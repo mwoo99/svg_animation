@@ -1,0 +1,26 @@
+var clearButton = document.getElementById("clear");
+var svg = document.getElementById("svg");
+var lastX = -1;
+var lastY = -1;
+var requestID;
+
+var clear = function(e){
+    e.preventDefault();
+    while(svg.hasChildNodes()){
+    	svg.removeChild(svg.lastChild);
+    }
+    lastX = -1;
+    lastY = -1;
+}
+
+var drawCircle = function(x,y,r){
+    var newCircle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    newCircle.setAttribute("cx", x);
+    newCircle.setAttribute("cy", y);
+    newCircle.setAttribute("r", r);
+    newCircle.setAttribute("fill", "navy");
+    svg.appendChild(newCircle);
+}
+
+svg.addEventListener( "click", drawDot );
+clearButton.addEventListener( "click", clear);
